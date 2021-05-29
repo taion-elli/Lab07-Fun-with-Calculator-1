@@ -75,6 +75,30 @@ public class CalcEngine
     }
     
     /**
+     * The 'multiplication' button was pressed 
+     * @author Elisa 
+     */
+    public void multiply() {
+    	applyOperator('*');
+    }
+    
+    /**
+     * The 'division' button was pressed
+     * @author Elisa 
+     */
+    public void divide() {
+    	applyOperator('/');
+    }
+    
+    /**
+     * The 'modulo' button was pressed
+     * @author Elisa
+     */
+    public void modulo() {
+    	applyOperator('%');
+    }
+    
+    /**
      * The '=' button was pressed.
      */
     public void equals()
@@ -149,6 +173,22 @@ public class CalcEngine
                 haveLeftOperand = true;
                 leftOperand = displayValue;
                 break;
+                //operator * -Elisa
+            case '*':
+            	displayValue = leftOperand * displayValue;
+            	haveLeftOperand = true;
+            	leftOperand = displayValue;
+            	break;
+            case '/':
+            	displayValue = leftOperand / displayValue;
+            	haveLeftOperand = true;
+            	leftOperand = displayValue;
+            	break;
+            case '%':
+            	displayValue = leftOperand % displayValue;
+            	haveLeftOperand = true;
+            	leftOperand = displayValue;
+            	break;
             default:
                 keySequenceError();
                 break;
@@ -193,4 +233,5 @@ public class CalcEngine
         // Reset everything.
         clear();
     }
+
 }

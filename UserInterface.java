@@ -14,12 +14,12 @@ import javax.swing.border.*;
 public class UserInterface
     implements ActionListener
 {
-    private CalcEngine calc;
+    protected CalcEngine calc;
     private boolean showingAuthor;
 
-    private JFrame frame;
-    private JTextField display;
-    private JLabel status;
+    protected JFrame frame;
+    protected JTextField display;
+    protected JLabel status;
 
     /**
      * Create a user interface.
@@ -45,7 +45,7 @@ public class UserInterface
     /**
      * Make the frame for the user interface.
      */
-    private void makeFrame()
+    protected void makeFrame()
     {
         frame = new JFrame(calc.getTitle());
         
@@ -60,7 +60,7 @@ public class UserInterface
             addButton(buttonPanel, "7");
             addButton(buttonPanel, "8");
             addButton(buttonPanel, "9");
-            addButton(buttonPanel, "C");
+            addButton(buttonPanel, "del");
             
             addButton(buttonPanel, "4");
             addButton(buttonPanel, "5");
@@ -94,7 +94,7 @@ public class UserInterface
      * @param panel The panel to receive the button.
      * @param buttonText The text for the button.
      */
-    private void addButton(Container panel, String buttonText)
+    protected void addButton(Container panel, String buttonText)
     {
         JButton button = new JButton(buttonText);
         button.addActionListener(this);
@@ -144,7 +144,7 @@ public class UserInterface
         else if(command.equals("=")) {
             calc.equals();
         }
-        else if(command.equals("C")) {
+        else if(command.equals("del")) {
             calc.clear();
         }
         else if(command.equals("?")) {
@@ -159,7 +159,7 @@ public class UserInterface
      * Update the interface display to show the current value of the 
      * calculator.
      */
-    private void redisplay()
+    protected void redisplay()
     {
         display.setText("" + calc.getDisplayValue());
     }
@@ -168,7 +168,7 @@ public class UserInterface
      * Toggle the info display in the calculator's status area between the
      * author and version information.
      */
-    private void showInfo()
+    protected void showInfo()
     {
         if(showingAuthor)
             status.setText(calc.getVersion());

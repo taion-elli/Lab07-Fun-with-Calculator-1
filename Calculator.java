@@ -20,8 +20,8 @@ public class Calculator
      */
     public Calculator()
     {
-        engine = new CalcEngine();
-        gui = new UserInterface(engine);
+        engine = new HexCalcEngine();
+        gui = new UserInterfaceHex(engine);
     }
 
     /**

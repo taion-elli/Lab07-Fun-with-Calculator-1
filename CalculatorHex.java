@@ -6,22 +6,24 @@ package Ü3;
  * @author David J. Barnes and Michael Kolling
  * @version 2008.03.30
  */
-public class Calculator
+public class CalculatorHex
 {
-    private CalcEngine engine;
+    private CalcEngine engineDec;
+    private CalcEngine engineHex;
     private UserInterface gui;
     
     public static void main(String[] args) {
-    	Calculator c = new Calculator();
+    	CalculatorHex c = new CalculatorHex();
     }
 
     /**
      * Create a new calculator and show it.
      */
-    public Calculator()
+    public CalculatorHex()
     {
-        engine = new CalcEngine();
-        gui = new UserInterface(engine);
+    	engineDec = new CalcEngine();
+        engineHex = new HexCalcEngine();
+        gui = new UserInterfaceHex(engineHex, engineDec);
     }
 
     /**

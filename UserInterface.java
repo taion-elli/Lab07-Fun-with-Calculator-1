@@ -17,6 +17,7 @@ public class UserInterface
     implements ActionListener
 {
     protected CalcEngine calc;
+    protected CalcEngine calc2;
     private boolean showingAuthor;
 
     protected JFrame frame;
@@ -35,6 +36,13 @@ public class UserInterface
         frame.setVisible(true);
     }
 
+    public UserInterface(CalcEngine engineHex, CalcEngine engineDec) {
+    	calc = engineHex;
+    	calc2 = engineDec;
+    	makeFrame();
+        frame.setVisible(true);
+        
+	}
     /**
      * Set the visibility of the interface.
      * @param visible true if the interface is to be made visible, false otherwise.
@@ -62,7 +70,7 @@ public class UserInterface
             addButton(buttonPanel, "7");
             addButton(buttonPanel, "8");
             addButton(buttonPanel, "9");
-            addButton(buttonPanel, "del");
+            addButton(buttonPanel, "DEL");
             
             addButton(buttonPanel, "4");
             addButton(buttonPanel, "5");
@@ -73,14 +81,14 @@ public class UserInterface
             addButton(buttonPanel, "2");
             addButton(buttonPanel, "3");
             //add button for * -Elisa
-            addButton(buttonPanel, "*");
+            addButton(buttonPanel, "x");
             
             addButton(buttonPanel, "0");
             addButton(buttonPanel, "+");
             addButton(buttonPanel, "-");
             addButton(buttonPanel, "=");
             
-            addButton(buttonPanel, "/");
+            addButton(buttonPanel, ":");
             addButton(buttonPanel, "%");
             
         contentPane.add(buttonPanel, BorderLayout.CENTER);
@@ -132,11 +140,11 @@ public class UserInterface
             calc.minus();
         }
         //check if * was pressed -Elisa
-        else if(command.equals("*")) {
+        else if(command.equals("x")) {
         	calc.multiply();
         }
         //check if / was pressed -Elisa
-        else if(command.equals("/")) {
+        else if(command.equals(":")) {
         	calc.divide();
         }
         //check if % was pressed -Elisa
@@ -146,7 +154,7 @@ public class UserInterface
         else if(command.equals("=")) {
             calc.equals();
         }
-        else if(command.equals("del")) {
+        else if(command.equals("DEL")) {
             calc.clear();
         }
         else if(command.equals("?")) {

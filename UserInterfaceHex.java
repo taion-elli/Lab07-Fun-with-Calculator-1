@@ -13,29 +13,31 @@ import javax.swing.border.EmptyBorder;
 /**
  * A user interface for the calculator. It can display Hexadecimal numbers.
  * 
- * @author Elisa
+ * @author Elisa and Alexander
  * @version 31/05/2021
- *
  */
 
 public class UserInterfaceHex extends UserInterface {
 
-	private boolean hex = true;
+	private boolean hex;
 	private JPanel contentPane;
+	private CalcEngine calc2;
 
 	public UserInterfaceHex(CalcEngine engineHex, CalcEngine engineDec) {
-		super(engineHex, engineDec); 
+		super(engineHex); 
+		calc2 = engineDec;
 	}
-
+	
 	/**
 	 * Make a frame that displays the numbers from 0 to F in Hexadecimal and the
 	 * same operators from its superclass method
 	 * 
-	 * @author Elisa
+	 * @author Elisa and Alexander
 	 */
 	@Override
 	protected void makeFrame() {
 
+		hex = true;
 		frame = new JFrame(calc.getTitle());
 
 		contentPane = (JPanel) frame.getContentPane();
@@ -46,75 +48,76 @@ public class UserInterfaceHex extends UserInterface {
 		contentPane.add(display, BorderLayout.NORTH);
 
 		JPanel buttonPanel = getButtonPenel();
-
+		
 		contentPane.add(buttonPanel, BorderLayout.CENTER);
-
-		// status = new JLabel(calc.getAuthor());
-		// contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
 		frame.pack();
 	}
 
+	/**
+	 * Returns a panel of buttons depending on the status of hex.
+	 * 
+	 * @author Elisa and Alexander
+	 */
 	private JPanel getButtonPenel() {
 		JPanel buttonPanel;
 		if (hex) {
 			buttonPanel = new JPanel(new GridLayout(6, 4));
-			addButton(buttonPanel, "A");
-			addButton(buttonPanel, "B");
-			addButton(buttonPanel, "C");
-			addButton(buttonPanel, "+");
-
 			addButton(buttonPanel, "D");
 			addButton(buttonPanel, "E");
 			addButton(buttonPanel, "F");
-			addButton(buttonPanel, "-");
+			addButton(buttonPanel, "DEL");
+
+			addButton(buttonPanel, "A");
+			addButton(buttonPanel, "B");
+			addButton(buttonPanel, "C");
+			addButton(buttonPanel, "DEC");
 
 			addButton(buttonPanel, "7");
 			addButton(buttonPanel, "8");
 			addButton(buttonPanel, "9");
-			addButton(buttonPanel, "DEL");
+			addButton(buttonPanel, "%");
 
 			addButton(buttonPanel, "4");
 			addButton(buttonPanel, "5");
 			addButton(buttonPanel, "6");
-			addButton(buttonPanel, "DEC");
+			addButton(buttonPanel, ":");
 
 			addButton(buttonPanel, "1");
 			addButton(buttonPanel, "2");
 			addButton(buttonPanel, "3");
 			addButton(buttonPanel, "x");
 
-			addButton(buttonPanel, "%");
+			addButton(buttonPanel, "+");
 			addButton(buttonPanel, "0");
-			addButton(buttonPanel, ":");
+			addButton(buttonPanel, "-");
 			addButton(buttonPanel, "=");
-		} else {
+		} else {	
 			buttonPanel = new JPanel(new GridLayout(5, 4));
 			addButton(buttonPanel, "7");
 			addButton(buttonPanel, "8");
 			addButton(buttonPanel, "9");
-			addButton(buttonPanel, "DEL");
+			addButton(buttonPanel, "%");
 
 			addButton(buttonPanel, "4");
 			addButton(buttonPanel, "5");
 			addButton(buttonPanel, "6");
-			addButton(buttonPanel, "HEX");
+			addButton(buttonPanel, ":");
 
 			addButton(buttonPanel, "1");
 			addButton(buttonPanel, "2");
 			addButton(buttonPanel, "3");
-			// add button for * -Elisa
+			// add button for *,/,% -Elisa
 			addButton(buttonPanel, "x");
 
-			addButton(buttonPanel, "0");
 			addButton(buttonPanel, "+");
+			addButton(buttonPanel, "0");
 			addButton(buttonPanel, "-");
 			addButton(buttonPanel, "=");
 
-			addButton(buttonPanel, ":");
-			addButton(buttonPanel, "%");
+			addButton(buttonPanel, "DEL");
+			addButton(buttonPanel, "HEX");
 		}
-
 		return buttonPanel;
 	}
 
@@ -219,28 +222,40 @@ public class UserInterfaceHex extends UserInterface {
 		redisplay();
 	}
 
+	/*
+	 * Changes output according to the numeric system.
+	 */
 	@Override
 	protected void redisplay() {
 		if (hex) {
 			int hexInput = calc.getDisplayValue();
 			display.setText("" + Integer.toHexString(hexInput).toUpperCase());
 		} else {
-			display.setText("" + calc.getDisplayValue());
+			display.setText("" + calc2.getDisplayValue());
 		}
 	}
 
+	/**
+	 * Switch between the decimal and hexadecimal system.
+	 * And change buttons accordingly.
+	 * 
+	 * @author Elisa and Alexander
+	 */
 	private void switchSystem() {
-		JPanel buttonPanel = getButtonPenel();
 		if (hex) {
-			contentPane.remove(buttonPanel);
+			contentPane.remove(1);
 			hex = false;
+			JPanel buttonPanel = getButtonPenel();
 			contentPane.add(buttonPanel, BorderLayout.CENTER);
 		}	
 		else {
-			contentPane.remove(buttonPanel);
+			contentPane.remove(1);
 			hex = true;
+			JPanel buttonPanel = getButtonPenel();
 			contentPane.add(buttonPanel, BorderLayout.CENTER);
 		}
+		contentPane.revalidate();
+		contentPane.repaint();
 	}
 
 }

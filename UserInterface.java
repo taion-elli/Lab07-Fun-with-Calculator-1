@@ -17,7 +17,7 @@ public class UserInterface
     implements ActionListener
 {
     protected CalcEngine calc;
-    protected CalcEngine calc2;
+    
     private boolean showingAuthor;
 
     protected JFrame frame;
@@ -36,13 +36,6 @@ public class UserInterface
         frame.setVisible(true);
     }
 
-    public UserInterface(CalcEngine engineHex, CalcEngine engineDec) {
-    	calc = engineHex;
-    	calc2 = engineDec;
-    	makeFrame();
-        frame.setVisible(true);
-        
-	}
     /**
      * Set the visibility of the interface.
      * @param visible true if the interface is to be made visible, false otherwise.

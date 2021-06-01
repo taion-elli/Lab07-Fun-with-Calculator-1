@@ -3,8 +3,8 @@ package Ü3;
  * The main class of a simple calculator. Create one of these and you'll
  * get the calculator on screen.
  * 
- * @author David J. Barnes and Michael Kolling
- * @version 2008.03.30
+ * @author Elisa and Alexander // original author David J. Barnes and Michael Kolling
+ * @version 2021.05.30
  */
 public class CalculatorHex
 {

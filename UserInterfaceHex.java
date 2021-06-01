@@ -229,7 +229,7 @@ public class UserInterfaceHex extends UserInterface {
 	protected void redisplay() {
 		if (hex) {
 			int hexInput = calc.getDisplayValue();
-			display.setText("" + Integer.toHexString(hexInput).toUpperCase());
+			display.setText("" + Integer.toString(hexInput, 16).toUpperCase());
 		} else {
 			display.setText("" + calc2.getDisplayValue());
 		}
